@@ -10,8 +10,6 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
 
 - task: DotNetCoreCLI@2
   displayName: build
@@ -34,10 +32,8 @@ steps:
     azureSubscription: 'Free Trial(6ca93f63-5fa5-46eb-a79d-7aaa71fe98ef)'
     appType: 'webApp'
     appName: 'Quizinator'
+    deployToSlotOrASE: true
+    resourceGroupName: 'Quizinator'
+    slotName: 'production'
     package: '$(Build.ArtifactStagingDirectory)/**/*.zip'
     deploymentMethod: 'auto'
-
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
