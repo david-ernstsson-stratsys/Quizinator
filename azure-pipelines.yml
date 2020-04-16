@@ -34,7 +34,7 @@ steps:
     azureSubscription: 'Free Trial(6ca93f63-5fa5-46eb-a79d-7aaa71fe98ef)'
     appType: 'webApp'
     appName: 'Quizinator'
-    package: '$(System.DefaultWorkingDirectory)/**/*.zip'
+    package: '$(Build.ArtifactStagingDirectory)/**/*.zip'
     deploymentMethod: 'auto'
 
 - script: |
