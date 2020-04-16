@@ -14,19 +14,29 @@ steps:
   displayName: 'Run a one-line script'
 
 - task: DotNetCoreCLI@2
-  displayName: Build
+  displayName: build
   inputs:
     command: build
     projects: '**/*.csproj'
     arguments: '--configuration Release' # Update this to match your need
 
 - task: DotNetCoreCLI@2
-  displayName: Publish
+  displayName: publish
   inputs:
     command: publish
     publishWebProjects: True
     arguments: '--configuration Release --output $(Build.ArtifactStagingDirectory)'
     zipAfterPublish: True
+
+- task: AzureWebApp@1
+  displayName: deploy
+  inputs:
+    azureSubscription: 'Free Trial(6ca93f63-5fa5-46eb-a79d-7aaa71fe98ef)'
+    appType: 'webApp'
+    appName: 'Quizinator'
+    package: '$(System.DefaultWorkingDirectory)/**/*.zip'
+    deploymentMethod: 'auto'
+    package: $(System.DefaultWorkingDirectory)/**/*.zip    
 
 - script: |
     echo Add other tasks to build, test, and deploy your project.
