@@ -36,7 +36,6 @@ steps:
     appName: 'Quizinator'
     package: '$(System.DefaultWorkingDirectory)/**/*.zip'
     deploymentMethod: 'auto'
-    package: $(System.DefaultWorkingDirectory)/**/*.zip    
 
 - script: |
     echo Add other tasks to build, test, and deploy your project.
